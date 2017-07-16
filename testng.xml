@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Page Object test example">
+	<parameter name="appURL" value="http://stage.ehs.ap.gov.in/EHSAP" />
+	<parameter name="browserType" value="chrome" />
+	<test name="sample test">
+		<classes>
+			<class name="com.barsha.selenium.EhsLoginTest" />
+		</classes>
+	</test>
+</suite>
