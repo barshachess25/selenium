@@ -1,4 +1,4 @@
-package com.barsha.selenium;
+package com.barsha.selenium.test;
 
 import java.util.HashMap;
 import java.util.Map;

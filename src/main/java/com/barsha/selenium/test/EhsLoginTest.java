@@ -1,4 +1,4 @@
-package com.barsha.selenium;
+package com.barsha.selenium.test;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -7,6 +7,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+
+import com.barsha.selenium.HomePage;
+import com.barsha.selenium.LoginPage;
 
 public class EhsLoginTest extends TestBaseSetup {
 
