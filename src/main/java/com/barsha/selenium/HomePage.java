@@ -11,12 +11,8 @@ public class HomePage extends BasePage {
 		super(driver);
 	}
 
-	By homePageUserName = By.id("noticeboard");
-
 	public String getHeaderUserName() {
-		return driver.findElement(By.id("headerDiv"))
-				.findElement(By.cssSelector("table > tbody > tr > td:first-child > p:nth-child(1)"))
-				.getText().split(":")[1].trim();
+		return getTextByCss("#headerDiv > table > tbody > tr > td:first-child > p:nth-child(1)").split(":")[1].trim();
 	}
 
 	public String getNoticeUserName() {
@@ -26,16 +22,16 @@ public class HomePage extends BasePage {
 	}
 
 	public String getHeaderDesignation() {
-		return driver.findElement(By.id("headerDiv")).findElement(By.cssSelector("table > tbody > tr > td:first-child > p:nth-child(2)")).getText().split(":")[1].trim();
+		return getTextByCss("#headerDiv > table > tbody > tr > td:first-child > p:nth-child(2)").split(":")[1].trim();
 	}
 
 	public String getLogoutUrl() {
-		return driver.findElement(By.cssSelector("a[title='Logout']")).getAttribute("href");
+		return getElementByCss("a[title='Logout']").getAttribute("href");
 	}
 
 	public void logout() {
 		Actions action = new Actions(driver);
-		WebElement we = driver.findElement(By.cssSelector("a[title='Logout']"));
+		WebElement we = getElementByCss("a[title='Logout']");
 		action.moveToElement(we).click();
 	}
 }

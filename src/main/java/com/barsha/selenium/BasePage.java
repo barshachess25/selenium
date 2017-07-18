@@ -1,6 +1,8 @@
 package com.barsha.selenium;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class BasePage {
 	protected WebDriver driver;
@@ -22,5 +24,21 @@ public class BasePage {
 	public boolean verifyBasePageTitle() {
 		String expectedPageTitle = "Google";
 		return getPageTitle().contains(expectedPageTitle);
+	}
+
+	protected WebElement getElementById(String id) {
+		return driver.findElement(By.id(id));
+	}
+
+	protected String getTextById(String id) {
+		return driver.findElement(By.id(id)).getText();
+	}
+
+	protected WebElement getElementByCss(String cssPath) {
+		return driver.findElement(By.cssSelector(cssPath));
+	}
+
+	protected String getTextByCss(String cssPath) {
+		return driver.findElement(By.cssSelector(cssPath)).getText();
 	}
 }

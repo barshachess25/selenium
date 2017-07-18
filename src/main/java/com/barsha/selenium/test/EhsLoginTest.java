@@ -1,10 +1,11 @@
 package com.barsha.selenium.test;
 
+import static org.testng.Assert.assertEquals;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -53,21 +54,21 @@ public class EhsLoginTest extends TestBaseSetup {
 		loginPage = new LoginPage(driver);
 		loginPage.doLogin(uname, pwd, userType);
 		String url = driver.getCurrentUrl();
-		Assert.assertEquals("http://stage.ehs.ap.gov.in/EHSAP/loginAction.do?actionFlag=checkLogin", url);
+		assertEquals("http://stage.ehs.ap.gov.in/EHSAP/loginAction.do?actionFlag=checkLogin", url);
 
 		new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated(By.tagName("body")));
 		new WebDriverWait(driver, 20).until(ExpectedConditions.visibilityOfElementLocated(By.name("loginForm")));
 		homePage = new HomePage(driver);
 
-		Assert.assertEquals(name, homePage.getHeaderUserName());
-		Assert.assertEquals(name, homePage.getNoticeUserName());
+		assertEquals(name, homePage.getHeaderUserName());
+		assertEquals(name, homePage.getNoticeUserName());
 		if ("Pensioner".equals(userType)) {
-			Assert.assertEquals("Family Pensioner", homePage.getHeaderDesignation());
+			assertEquals("Family Pensioner", homePage.getHeaderDesignation());
 		} else if ("Employee".equals(userType)) {
-			Assert.assertEquals("Employee", homePage.getHeaderDesignation());
+			assertEquals("Employee", homePage.getHeaderDesignation());
 		}
 
-		Assert.assertEquals("javascript:fn_logout()", homePage.getLogoutUrl());
+		assertEquals("javascript:fn_logout()", homePage.getLogoutUrl());
 
 		homePage.logout();
 		new WebDriverWait(driver, 30).until(ExpectedConditions.visibilityOfElementLocated(By.tagName("body")));
