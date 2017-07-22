@@ -3,6 +3,7 @@ package com.barsha.selenium;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.PageFactory;
 
 public class BasePage {
 	protected WebDriver driver;
@@ -11,6 +12,14 @@ public class BasePage {
 		this.driver = driver;
 	}
 
+	protected <T> T initPage(Class<T> clazz) {
+		return PageFactory.initElements(driver, clazz);
+	}
+
+	protected String getCurrentUrl() {
+		return driver.getCurrentUrl();
+	}
+	
 	public void clickImagesLink() {
 		// It should have a logic to click on images link
 		// And it should navigate to google images page
