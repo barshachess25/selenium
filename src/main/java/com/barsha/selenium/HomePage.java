@@ -1,9 +1,8 @@
 package com.barsha.selenium;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 
 public class HomePage extends BasePage {
 
@@ -30,18 +29,6 @@ public class HomePage extends BasePage {
 	}
 
 	public void logout() {
-		Actions action = new Actions(driver);
-		WebElement we = getElementByCss("div.item");
-		Actions logout = action.moveToElement(we);
-		//we.click();
-		try {
-			Thread.sleep(1000);
-			WebElement we2 = getElementByCss("div.item > div.item_content > a[title='Logout']");
-			System.out.println(we2.isDisplayed());
-			we2.click();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		logout.click();
+		((JavascriptExecutor)driver).executeScript("fn_logout();");
 	}
 }

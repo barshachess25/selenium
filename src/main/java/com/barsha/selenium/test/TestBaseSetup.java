@@ -27,17 +27,17 @@ public class TestBaseSetup extends DatabaseHelper {
 	public static <T> T initPage(Class<T> clazz) {
 		return PageFactory.initElements(driver, clazz);
 	}
-	
+
 	public WebDriver getDriver(String driverName) {
 		driver = driverMap.get(driverName);
 		return driver;
 	}
-	
+
 	public WebDriver getDriver() {
 		driver = driverMap.get("chrome");
 		return driver;
 	}
-	
+
 	protected String getCurrentUrl() {
 		return driver.getCurrentUrl();
 	}
@@ -83,28 +83,27 @@ public class TestBaseSetup extends DatabaseHelper {
 
 	@BeforeMethod
 	public void setUp() {
-		initializeTestBaseSetup();
 		getDriver();
 		driver.navigate().to(config.getProperty("appUrl"));
 	}
-	
+
 	@AfterMethod
 	public void afterMethod() {
-		for (WebDriver driver : driverMap.values()) {
+		/*for (WebDriver driver : driverMap.values()) {
 			driver.close();
-		}
+		}*/
 	}
-	
+
 	@BeforeTest
 	public void setTest() {
-		//initializeTestBaseSetup();
+		initializeTestBaseSetup();
 	}
 
 	@AfterTest
 	public void tearDown() {
-		/*for (WebDriver driver : driverMap.values()) {
+		for (WebDriver driver : driverMap.values()) {
 			driver.quit();
-		}*/
+		}
 	}
 
 	public void close() {

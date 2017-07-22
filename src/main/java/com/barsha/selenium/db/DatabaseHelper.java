@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Arrays;
 import java.util.Properties;
 
 public class DatabaseHelper {
@@ -23,19 +24,9 @@ public class DatabaseHelper {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public int getTestDataLen() {
 		return Integer.parseInt(config.getProperty("testDataLen"));
-	}
-	
-	public void testConnection() throws Exception {
-		Object[][] rows = query("select login_name,pass_word,user_role,first_name from asrim_users");
-		for (int i = 0; i < rows.length; i++) {
-			for (int j = 0; j < rows[i].length; j++) {
-				System.out.print(rows[i][j] + ", ");
-			}
-			System.out.println();
-		}
 	}
 
 	protected Object[][] query(String sql) throws SQLException {
@@ -57,11 +48,24 @@ public class DatabaseHelper {
 			rows[rowCtr++] = col;
 		}
 
+		if (rowCtr < getTestDataLen()) {
+			return Arrays.copyOfRange(rows, 0, rowCtr);
+		}
 		return rows;
 	}
 
 	public static void main(String[] args) throws Exception {
 		DatabaseHelper helper = new DatabaseHelper();
 		helper.testConnection();
+	}
+
+	public void testConnection() throws Exception {
+		Object[][] rows = query("select login_name,pass_word,user_role,first_name from asrim_users");
+		for (int i = 0; i < rows.length; i++) {
+			for (int j = 0; j < rows[i].length; j++) {
+				System.out.print(rows[i][j] + ", ");
+			}
+			System.out.println();
+		}
 	}
 }

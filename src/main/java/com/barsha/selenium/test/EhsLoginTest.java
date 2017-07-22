@@ -5,7 +5,6 @@ import static org.testng.Assert.assertEquals;
 import java.sql.SQLException;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.DataProvider;
@@ -18,7 +17,7 @@ public class EhsLoginTest extends TestBaseSetup {
 
 	@DataProvider(name = "loginDataProvider")
 	public Object[][] loginDataProvider() throws SQLException {
-		return query("select login_name,pass_word,user_role,first_name from asrim_users where user_role='Pensioner'");
+		return query("select login_name,pass_word,user_role,first_name from ehs.asrim_users where user_role='Pensioner'");
 	}
 
 	@Test(dataProvider = "loginDataProvider")

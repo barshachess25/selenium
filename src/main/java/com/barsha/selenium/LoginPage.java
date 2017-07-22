@@ -14,7 +14,7 @@ public class LoginPage extends BasePage {
 	public LoginPage(WebDriver driver) {
 		super(driver);
 	}
-	
+
 	@FindBy(id="username") WebElement username;
 	@FindBy(id="password") WebElement password;
 	@FindBy(css="select[name=loginType]") WebElement loginType;
@@ -28,7 +28,7 @@ public class LoginPage extends BasePage {
 		new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated(By.tagName("body")));
 		return initPage(HomePage.class);
 	}
-	
+
 	public LoginPage doLoginFailure(String usernameVal, String passwordVal, String userTypeVal) {
 		username.sendKeys(usernameVal);
 		password.sendKeys(passwordVal);
