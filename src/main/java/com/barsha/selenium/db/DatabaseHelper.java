@@ -18,8 +18,12 @@ public class DatabaseHelper {
 	public DatabaseHelper() {
 		try {
 			config.load(new FileInputStream("src/main/resources/selenium.properties"));
-			Class.forName("org.h2.Driver");
-			conn = DriverManager.getConnection("jdbc:h2:~/test", "sa", "");
+			Class.forName(config.getProperty("database.driver.class"));
+			conn = DriverManager.getConnection(
+					config.getProperty("database.url"), 
+					config.getProperty("database.username"), 
+					config.getProperty("database.password")
+				);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
